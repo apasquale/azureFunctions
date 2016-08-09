@@ -9,7 +9,8 @@ var options = {
 };
 
 function buildMessage(item, msg) {
-  msg += '\n- #' + item.name + ': ' + item.purpose.value;
+    //<#C024BE7LR|general>
+  msg += '\n- <#' + item.id + '|' + item.name + '>: ' + item.purpose.value;
   return msg;
 }
 
