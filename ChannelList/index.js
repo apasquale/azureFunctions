@@ -1,15 +1,42 @@
+var options = {
+  host: 'slack.com',
+  port: '443',
+  path: '/api/channels.list?token='+process.env.app_slack_authtoken+'&pretty=1',
+  method: 'GET'
+};
+
+function buildMessage(item, msg) {
+  msg += '\n\t- ' + item.name + ': ' + item.purpose.value;
+  return msg;
+}
+
+function listChannels(context) {
+    
+    var dbreq = https.request(options, function(res) {
+        var msg = '';
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+            msg += chunk;
+        });
+        res.on('end', function() {
+            var myresult = JSON.parse(msg);
+            
+            var message = "Here are the available channels:";
+  
+            _.each(myresult.channels, function(item) {message = buildMessage(item, message)});
+  
+            context.res = {
+                body: message
+            };
+            context.done();
+        });
+    });
+    dbreq.end();
+}
+
+
 module.exports = function(context, req) {
     context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
-    
-    context.res = {
-        body: `We have the following channels:
-- #general: Company wide announcements and work place matters
-- #random: Non-work banter and water cooler conversation
-- #bad-code: Discussion of some of the more _interesting_ code we have found in our travels
-- #rants: We are all friends here... go nuts and let it all out
-- #ebooks: Free daily ebooks delivered to you
-- #accelerator-chat: Discussion of the Apps Dev accelerator sessions`
-    };
-    
-    context.done();
+
+    listChannels(context);
 };
