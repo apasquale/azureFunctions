@@ -4,7 +4,7 @@ var _ = require('lodash');
 var options = {
   host: 'slack.com',
   port: '443',
-  path: '/api/channels.list?token='+process.env.app_slack_authtoken+'&pretty=1',
+  path: '/api/channels.list?token='+process.env.app_slack_authtoken+'&exclude_archived=1&pretty=1',
   method: 'GET'
 };
 
@@ -25,7 +25,7 @@ function listChannels(context) {
         res.on('end', function() {
             var myresult = JSON.parse(msg);
             
-            var message = "Here are the available channels:";
+            var message = "*Here are the available channels:*";
   
             _.each(myresult.channels, function(item) {message = buildMessage(item, message)});
   
