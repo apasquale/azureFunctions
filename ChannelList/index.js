@@ -9,7 +9,7 @@ var options = {
 };
 
 function buildMessage(item, msg) {
-  msg += '\n\t- ' + item.name + ': ' + item.purpose.value;
+  msg += '\n- #' + item.name + ': ' + item.purpose.value;
   return msg;
 }
 
