@@ -1,3 +1,6 @@
+var https = require('https');
+var _ = require('lodash');
+
 var options = {
   host: 'slack.com',
   port: '443',
