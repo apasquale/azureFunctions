@@ -138,7 +138,10 @@ function getEbook(context, getTerm) {
 module.exports = function(context, req) {
     context.log(`Node.js HTTP trigger function processed a request. RequestUri=${req.originalUrl}. Body=${req.body}`);
     var bodyjson = QueryStringToJSON(req.body);
-    if ((bodyjson && bodyjson.token == process.env.app_slack_token)) {
+    var tokens = process.env.app_tokens.split(',');
+    var token = bodyjson.token;
+
+    if ((bodyjson && _.includes(tokens, token))) {
         var commandArgs = bodyjson.text.trim().split("+");
         var command = commandArgs[0];
         var terms = commandArgs.slice(1).join(" ");
