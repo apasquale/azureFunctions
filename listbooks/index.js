@@ -138,7 +138,7 @@ function getEbook(context, getTerm) {
 module.exports = function(context, req) {
     context.log(`Node.js HTTP trigger function processed a request. RequestUri=${req.originalUrl}. Body=${req.body}`);
     var bodyjson = QueryStringToJSON(req.body);
-    var tokens = process.env.app_tokens.split(',');
+    var tokens = process.env.app_valid_tokens.split(',');
     var token = bodyjson.token;
 
     if ((bodyjson && _.includes(tokens, token))) {
