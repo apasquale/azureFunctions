@@ -69,11 +69,12 @@ module.exports = function(context, req) {
             postMessage(context, req);
             break;
         case "read":
-            readMessage(context, terms);
-            break;default: 
+            readMessage(context, req);
+            break;
+        default: 
             context.res = {
                 status: 400,
-                body: `Incorrect function: ${command} Only 'list', 'search' and 'get' are supported at this stage`
+                body: `Incorrect function: ${req.body.command} Only 'post' and 'read' are supported at this stage`
             };
             context.done();
     }
