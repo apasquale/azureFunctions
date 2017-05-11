@@ -13,32 +13,24 @@ function postMessage(context, req) {
     var message = '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
     context.log('Responding with: ', message);
+    context.log('Options: ', options);
 
-    context.res = {
-        body: message
-    };
-    context.done();
-
-    // var dbreq = https.request(options, function(res) {
-    //     var msg = '';
-    //     res.setEncoding('utf8');
-    //     res.on('data', function(chunk) {
-    //         msg += chunk;
-    //     });
-    //     res.on('end', function() {
-    //         var myresult = JSON.parse(msg);
-            
-    //         var message = "*Here are the available channels:*";
-  
-            
-  
-    //         context.res = {
-    //             body: message
-    //         };
-    //         context.done();
-    //     });
-    // });
-    // dbreq.end();
+    var slackSend = https.request(options, function(res) {
+        var msg = '';
+        res.setEncoding('utf8');
+        res.on('data', function(chunk) {
+            msg += chunk;
+        });
+        res.on('end', function() {
+            var myresult = JSON.parse(msg);
+    
+            context.res = {
+                body: myresult
+            };
+            context.done();
+        });
+    });
+    slackSend.end();
 }
 
 
