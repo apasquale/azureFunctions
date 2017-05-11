@@ -1,17 +1,16 @@
 var https = require('https');
-var _ = require('lodash');
 
 var options = {
   host: 'slack.com',
   port: '443',
-  path: '/api/chat.postMessage?token='+process.env.app_auth_logn+'&username=Pask%20Ghost&icon_emoji=%3Aghost%3A&pretty=1',
+  path: '/api/chat.postMessage?token='+process.env.app_auth_logn,
   method: 'GET'
 };
 //https://slack.com/api/chat.postMessage?&channel=C5CQ4HC6A&text=viapost&username=Pask%20Ghost&icon_emoji=%3Aghost%3A&pretty=1
 
 function postMessage(context) {
     
-    var message = '&channel=' + req.body.channel + '&text=' + encodeURI(req.body.message);
+    var message = '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
     context.res = {
         body: message
