@@ -15,6 +15,7 @@ function postMessage(context, req) {
     context.res = {
         body: message
     };
+    context.done();
 
     // var dbreq = https.request(options, function(res) {
     //     var msg = '';
