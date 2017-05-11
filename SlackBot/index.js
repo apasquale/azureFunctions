@@ -8,7 +8,7 @@ var options = {
 };
 //https://slack.com/api/chat.postMessage?&channel=C5CQ4HC6A&text=viapost&username=Pask%20Ghost&icon_emoji=%3Aghost%3A&pretty=1
 
-function postMessage(context) {
+function postMessage(context, req) {
     
     var message = '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
@@ -42,5 +42,5 @@ function postMessage(context) {
 module.exports = function(context, req) {
     context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 
-    postMessage(context);
+    postMessage(context, req);
 };
