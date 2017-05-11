@@ -12,6 +12,8 @@ function postMessage(context, req) {
     
     var message = '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
+    context.log('Responding with: ', message);
+
     context.res = {
         body: message
     };
