@@ -9,7 +9,7 @@ var options = {
 
 function postMessage(context, req) {
     
-    var message = '/api/chat.postMessage?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
+    var message = 'chat.postMessage?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
     options.path += message
 
@@ -36,7 +36,7 @@ function postMessage(context, req) {
 
 function readMessage(context, req) {
     
-    var message = '/api/channels.history?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&count=' + req.body.count;
+    var message = 'channels.history?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&count=' + req.body.count;
     options.path += message
 
     context.log('Responding with: ', message);
