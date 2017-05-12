@@ -1,0 +1,37 @@
+{
+    "ok": true,
+    "channels": [
+        {
+            "id": "C5CQ4HC6A",
+            "name": "aptest"
+        },
+        {
+            "id": "C2MN8NUKB",
+            "name": "bad-code"
+        },
+        {
+            "id": "C30J76W56",
+            "name": "ebooks"
+        },
+        {
+            "id": "C26L6CL7P",
+            "name": "general"
+        },
+        {
+            "id": "C2S8Z0QNR",
+            "name": "good-error-pages"
+        },
+        {
+            "id": "C26LG1MQA",
+            "name": "random"
+        },
+        {
+            "id": "C26LX43B6",
+            "name": "rants"
+        },
+        {
+            "id": "C26KKD799",
+            "name": "xbox-funtime"
+        }
+    ]
+}

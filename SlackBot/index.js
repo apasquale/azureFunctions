@@ -3,15 +3,15 @@ var https = require('https');
 var options = {
   host: 'slack.com',
   port: '443',
-  path: '/api/',
+  path: '',
   method: 'GET'
 };
 
 function postMessage(context, req) {
     context.log('In post message');
-    var message = 'chat.postMessage?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
+    var message = '/api/chat.postMessage?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
-    options.path += message
+    options.path = message
 
     context.log('Responding with: ', message);
     context.log('Options: ', options);
@@ -36,8 +36,9 @@ function postMessage(context, req) {
 
 function readMessage(context, req) {
     context.log('In read message');
-    var message = 'channels.history?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&count=' + req.body.count;
-    options.path += message
+    var message = '/api/channels.history?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&count=' + req.body.count;
+
+    options.path = message
 
     context.log('Responding with: ', message);
     context.log('Options: ', options);
