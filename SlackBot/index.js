@@ -56,6 +56,12 @@ function readMessage(context, req) {
             };
             context.done();
         });
+        res.on('error', function(err) {
+            context.res = {
+                error: err
+            };
+            context.done();
+        });
     });
     slackSend.end();
 }
