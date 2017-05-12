@@ -8,7 +8,7 @@ var options = {
 };
 
 function postMessage(context, req) {
-    
+    context.log('In post message');
     var message = 'chat.postMessage?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&username=' + encodeURI(req.body.username) + '&text=' + encodeURI(req.body.message) + '&icon_emoji=' + encodeURI(req.body.emoji);
 
     options.path += message
@@ -35,7 +35,7 @@ function postMessage(context, req) {
 }
 
 function readMessage(context, req) {
-    
+    context.log('In read message');
     var message = 'channels.history?token=' + process.env.app_auth_logn + '&channel=' + encodeURI(req.body.channel) + '&count=' + req.body.count;
     options.path += message
 
@@ -68,7 +68,7 @@ function readMessage(context, req) {
 
 module.exports = function(context, req) {
     context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
-
+    context.log('Calling command: ' + req.body.command);
     switch (req.body.command)
     {
         case "post":
