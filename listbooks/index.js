@@ -130,6 +130,12 @@ function getEbook(context, getTerm) {
             };
             context.done();
         });
+        res.on('error', function(err) {
+            context.res = {
+                error: err
+            };
+            context.done();
+        });
     });
     dbreq.write(getData);
     dbreq.end();
