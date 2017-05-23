@@ -81,7 +81,7 @@ function readMessage(context, req) {
     slackSend.end();
 }
 
-function readMessage(context, req) {
+function listMessage(context, req) {
     context.log('In read message');
     
     var excludeArchive = req.body.excludeArchive;
